@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sri Durga Leather Puppets</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#111;
+color:white;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+background:#1b1b1b;
+padding:16px;
+text-align:center;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 2px 10px rgba(0,0,0,0.5);
+}
+
+header h1{
+color:#f5c16c;
+font-size:22px;
+}
+
+header p{
+color:#ccc;
+font-size:13px;
+margin-top:5px;
+}
+
+/* PRODUCTS */
+
+.products{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+padding:12px;
+}
+
+/* CARD */
+
+.card{
+background:#1d1d1d;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 4px 10px rgba(0,0,0,0.4);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-3px);
+}
+
+.card img{
+width:100%;
+height:170px;
+object-fit:cover;
+display:block;
+}
+
+/* CONTENT */
+
+.card-content{
+padding:10px;
+}
+
+.card-content h3{
+font-size:14px;
+margin-bottom:5px;
+}
+
+.card-content p{
+font-size:11px;
+color:#bbb;
+margin-bottom:10px;
+}
+
+/* BOTTOM */
+
+.bottom{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.price{
+color:#f5c16c;
+font-weight:bold;
+font-size:14px;
+}
+
+/* BUTTON */
+
+button{
+background:#c58b2a;
+border:none;
+color:white;
+padding:8px 10px;
+border-radius:8px;
+font-size:11px;
+font-weight:600;
+cursor:pointer;
+}
+
+/* MOBILE */
+
+@media(max-width:480px){
+
+.card img{
+height:150px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Sri Durga Leather Puppets</h1>
+<p>📞 +91 9502500034,6302718727</p>
+</header>
+
+<section class="products">
+
+<!-- 1 -->
+<div class="card">
+<img src="img_1.jpg" loading="lazy">
+<div class="card-content">
+<h3>Vinayaka wall frame</h3>
+<p>Traditional Leather Art</p>
+<div class="bottom">
+<span class="price">₹2,499</span>
+<button onclick="openForm('Vinayaka wall frame', 2499)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 2 -->
+<div class="card">
+<img src="img_2.jpg" loading="lazy">
+<div class="card-content">
+<h3>Buddha design medium</h3>
+<p>Premium Handmade Design</p>
+<div class="bottom">
+<span class="price">₹1,999</span>
+<button onclick="openForm('Buddha design medium', 1999)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 3 -->
+<div class="card">
+<img src="img_3.jpg" loading="lazy">
+<div class="card-content">
+<h3>Pecock design</h3>
+<p>Traditional Artwork</p>
+<div class="bottom">
+<span class="price">₹1,199</span>
+<button onclick="openForm('Pecock design', 1199)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="card">
+<img src="img_4.jpg" loading="lazy">
+<div class="card-content">
+<h3>Flower design small</h3>
+<p>Luxury Leather Craft</p>
+<div class="bottom">
+<span class="price">₹799</span>
+<button onclick="openForm('Flower design small', 799)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 5 -->
+<div class="card">
+<img src="img_5.jpg" loading="lazy">
+<div class="card-content">
+<h3>Pecock and flower designs</h3>
+<p>Traditional Indian Style</p>
+<div class="bottom">
+<span class="price">₹1,199</span>
+<button onclick="openForm('Pecock and flower design', 1199)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 6 -->
+<div class="card">
+<img src="img_6.jpg" loading="lazy">
+<div class="card-content">
+<h3>Radha krishna design</h3>
+<p>Premium Collection</p>
+<div class="bottom">
+<span class="price">₹1,899</span>
+<button onclick="openForm('Radha krishna design', 1899)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 7 -->
+<div class="card">
+<img src="img_7.jpg" loading="lazy">
+<div class="card-content">
+<h3>Vinayaka design</h3>
+<p>Handcrafted Leather Art</p>
+<div class="bottom">
+<span class="price">₹3,499</span>
+<button onclick="openForm('Vinayaka design', 3499)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 8 -->
+<div class="card">
+<img src="img_8.jpg" loading="lazy">
+<div class="card-content">
+<h3>Pecock design big</h3>
+<p>Classic Telugu Artwork</p>
+<div class="bottom">
+<span class="price">₹2,599</span>
+<button onclick="openForm('Pecock design big', 2599)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 9 -->
+<div class="card">
+<img src="img_9.jpg" loading="lazy">
+<div class="card-content">
+<h3>Elephant design big</h3>
+<p>Decor puppet</p>
+<div class="bottom">
+<span class="price">₹2,999</span>
+<button onclick="openForm('Elephant design big', 2499)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 10 -->
+<div class="card">
+<img src="img_10.jpg" loading="lazy">
+<div class="card-content">
+<h3>Radha krishna multicolour</h3>
+<p>Traditional Festival Art</p>
+<div class="bottom">
+<span class="price">₹4,799</span>
+<button onclick="openForm('Radha krishna multicolour', 4799)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 11 -->
+<div class="card">
+<img src="img_11.jpg" loading="lazy">
+<div class="card-content">
+<h3>Radha krishna red colour</h3>
+<p>Indian Leather Artwork</p>
+<div class="bottom">
+<span class="price">₹5,299</span>
+<button onclick="openForm('Radha krishna red colour', 5299)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 12 -->
+<div class="card">
+<img src="img_12.jpg" loading="lazy">
+<div class="card-content">
+<h3>Kathakali design</h3>
+<p>Traditional Handmade Craft</p>
+<div class="bottom">
+<span class="price">₹2,199</span>
+<button onclick="openForm('Kathakali design', 2199)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 13 -->
+<div class="card">
+<img src="img_13.jpg" loading="lazy">
+<div class="card-content">
+<h3>Elephant design small</h3>
+<p>Classic Shadow Art</p>
+<div class="bottom">
+<span class="price">₹1,199</span>
+<button onclick="openForm('Elephant design small', 1199)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 14 -->
+<div class="card">
+<img src="img_14.jpg" loading="lazy">
+<div class="card-content">
+<h3>Pecock design small</h3>
+<p>indian puppet</p>
+<div class="bottom">
+<span class="price">₹799</span>
+<button onclick="openForm('Pecock design small', 799)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 15 -->
+<div class="card">
+<img src="img_15.jpg" loading="lazy">
+<div class="card-content">
+<h3>Elephant design big</h3>
+<p>Craft puppet</p>
+<div class="bottom">
+<span class="price">₹3,599</span>
+<button onclick="openForm('Elephant design big', 3599)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 16 -->
+<div class="card">
+<img src="img_16.jpg" loading="lazy">
+<div class="card-content">
+<h3>Flower design big</h3>
+<p>Traditional Royal Style</p>
+<div class="bottom">
+<span class="price">₹2,399</span>
+<button onclick="openForm('Flower design big', 2399)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 17 -->
+<div class="card">
+<img src="img_17.jpg" loading="lazy">
+<div class="card-content">
+<h3>Radha krishna design big</h3>
+<p>Luxury Handmade Artwork</p>
+<div class="bottom">
+<span class="price">₹2,899</span>
+<button onclick="openForm('Radha krishna design big', 2899)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 18 -->
+<div class="card">
+<img src="img_18.jpg" loading="lazy">
+<div class="card-content">
+<h3>Peacock design small</h3>
+<p>Modern Traditional Mix</p>
+<div class="bottom">
+<span class="price">₹799</span>
+<button onclick="openForm('Peacock design small', 799)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 19 -->
+<div class="card">
+<img src="img_19.jpg" loading="lazy">
+<div class="card-content">
+<h3>Vinayaka design big</h3>
+<p>Premium Designer Art</p>
+<div class="bottom">
+<span class="price">₹1,999</span>
+<button onclick="openForm('Vinayaka design big', 1999)">Order Now</button>
+</div>
+</div>
+</div>
+
+<!-- 20 -->
+<div class="card">
+<img src="img_20.jpg" loading="lazy">
+<div class="card-content">
+<h3>Fish design big</h3>
+<p>Authentic Indian Handmade Art</p>
+<div class="bottom">
+<span class="price">₹1,799</span>
+<button onclick="openForm('Fish design big', 1799)">Order Now</button>
+</div>
+</div>
+</div>
+
+</section>
+
+<!-- POPUP FORM -->
+
+<div id="popupForm" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
+
+  <div style="background:#fff; color:#000; width:90%; max-width:350px; margin:100px auto; padding:20px; border-radius:12px;">
+
+    <h2 style="margin-bottom:10px;">Order Form</h2>
+
+    <p id="productName" style="margin-bottom:10px;"></p>
+
+    <input id="name" type="text" placeholder="Your Name"
+    style="width:100%; padding:10px; margin-bottom:10px;">
+
+    <input id="phone" type="tel" placeholder="Phone Number"
+    style="width:100%; padding:10px; margin-bottom:10px;">
+
+    <textarea id="address" placeholder="Address"
+    style="width:100%; padding:10px; margin-bottom:10px;"></textarea>
+
+
+    <center>
+<img src="QR CODE.png"
+width="100"
+style="margin-bottom:2px;border-radius:2px;">
+
+<p style="color:black;font-weight:bold;">
+Scan & Pay via UPI
+</p>
+
+<p style="color:green;font-weight:bold;">
+UPI ID: 9502500034-4@ybl
+</p>
+
+</center>
+
+    <button onclick="sendWhatsApp()"
+    style="width:100%; padding:10px; background:blue; color:white; border:none; border-radius:8px; margin-bottom:10px;">
+      WhatsApp Order
+    </button>
+
+    <button onclick="window.location.href='index.html'"
+style="width:100%; padding:10px; background:red; color:white; border:none; border-radius:8px; margin-top:10px;">
+  Cancel
+</button>
+    
+
+
+  </div>
+
+</div>
+
+<script>
+
+let selectedProduct = "";
+let selectedPrice = "";
+
+/* OPEN FORM */
+function openForm(product, price){
+
+  selectedProduct = product;
+  selectedPrice = price;
+
+  document.getElementById("productName").innerText =
+    product + " - ₹" + price;
+
+  document.getElementById("popupForm").style.display = "block";
+}
+
+/* WHATSAPP ORDER */
+function sendWhatsApp(){
+
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let address = document.getElementById("address").value;
+
+  if(name=="" || phone=="" || address==""){
+    alert("Please fill all details");
+    return;
+  }
+
+  let message =
+`New Order:
+Product: ${selectedProduct}
+Price: ₹${selectedPrice}
+Name: ${name}
+Phone: ${phone}
+Address: ${address}`;
+
+  let url =
+"https://wa.me/919502500034?text=" + encodeURIComponent(message);
+
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
