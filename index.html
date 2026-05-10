@@ -675,9 +675,7 @@ window.open(url, "_blank");
 
 .catch(function(error){
 
-alert("Email Failed ❌");
-
-console.log("ERROR:", error);
+alert(JSON.stringify(error));
 
 });
 }
