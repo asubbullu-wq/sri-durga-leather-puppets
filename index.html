@@ -622,7 +622,6 @@ document.getElementById("email").value;
 let address =
 document.getElementById("address").value;
 
-
 if(name=="" || phone=="" || email=="" || address==""){
 
 alert("Please fill all details");
@@ -634,27 +633,25 @@ return;
 /* EMAIL SEND */
 
 emailjs.send("service_jqb790x","template_qaurvg",{
+
 name: name,
 email: email,
 title: selectedProduct,
+
 message: `
 Product: ${selectedProduct}
 Price: ₹${selectedPrice}
 Phone: ${phone}
 Address: ${address}
 `
+
 })
+
 .then(function(response){
 
-console.log("SUCCESS!", response.status, response.text);
+alert("Order Confirmed & Email Sent ✅");
 
-})
-.catch(function(error){
-
-console.log("FAILED...", error);
-
-});
-
+/* WHATSAPP MESSAGE */
 
 let message =
 `New Order:
@@ -665,13 +662,21 @@ Phone: ${phone}
 Email: ${email}
 Address: ${address}`;
 
-
 let url =
 "https://wa.me/916302718727?text="
 + encodeURIComponent(message);
 
-
 window.open(url, "_blank");
+
+})
+
+.catch(function(error){
+
+alert("Email Failed ❌");
+
+console.log(error);
+
+});
 
 }
 
