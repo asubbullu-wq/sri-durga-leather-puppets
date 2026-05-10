@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -136,6 +137,10 @@ height:150px;
 </style>
 </head>
 
+
+<script>
+
+</script>
 <body>
 
 <header>
@@ -599,6 +604,8 @@ document.getElementById("popupForm").style.display = "none";
 }
 
 
+
+
 /* WHATSAPP ORDER */
 
 function sendWhatsApp(){
@@ -624,6 +631,30 @@ return;
 
 }
 
+/* EMAIL SEND */
+
+emailjs.send("service_jqb790x","template_qaurvg",{
+name: name,
+email: email,
+title: selectedProduct,
+message: `
+Product: ${selectedProduct}
+Price: ₹${selectedPrice}
+Phone: ${phone}
+Address: ${address}
+`
+})
+.then(function(response){
+
+console.log("SUCCESS!", response.status, response.text);
+
+})
+.catch(function(error){
+
+console.log("FAILED...", error);
+
+});
+
 
 let message =
 `New Order:
@@ -636,7 +667,7 @@ Address: ${address}`;
 
 
 let url =
-"https://wa.me/919502500034?text="
+"https://wa.me/916302718727?text="
 + encodeURIComponent(message);
 
 
@@ -704,4 +735,7 @@ font-size:12px;
 </footer>
 
 </body>
+<script>
+emailjs.init("C2c5BLGpxzGQ47WKw");
+</script>
 </html>                                       
