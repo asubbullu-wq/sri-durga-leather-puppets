@@ -194,7 +194,7 @@ Order Now</button>
 <span class="price">₹1,999</span>
 <button onclick="openProductPage(
 'Buddha design medium',
-1,999,
+1999,
 'img_2.jpg'
 )">
 Order Now</button>
@@ -212,7 +212,7 @@ Order Now</button>
 <span class="price">₹1,199</span>
 <button onclick="openProductPage(
 'Pecock design',
-1,199,
+1199,
 'img_3.jpg'
 )">
 Order Now</button>
@@ -248,7 +248,7 @@ Order Now</button>
 <span class="price">₹1,199</span>
 <button onclick="openProductPage(
 'Pecock and flower designs',
-1,199,
+1199,
 'img_5.jpg'
 )">
 Order Now</button>
@@ -266,7 +266,7 @@ Order Now</button>
 <span class="price">₹1,899</span>
 <button onclick="openProductPage(
 'Radha krishna design',
-1,899,
+1899,
 'img_6.jpg'
 )">
 Order Now</button>
@@ -284,7 +284,7 @@ Order Now</button>
 <span class="price">₹3,499</span>
 <button onclick="openProductPage(
 'Vinayaka design',
-3,499,
+3499,
 'img_7.jpg'
 )">
 Order Now</button>
@@ -302,7 +302,7 @@ Order Now</button>
 <span class="price">₹2,599</span>
 <button onclick="openProductPage(
 'Pecock design big',
-2,599,
+2599,
 'img_8.jpg'
 )">
 Order Now</button>
@@ -320,7 +320,7 @@ Order Now</button>
 <span class="price">₹2,999</span>
 <button onclick="openProductPage(
 'Elephant design big',
-2,999,
+2999,
 'img_9.jpg'
 )">
 Order Now</button>
@@ -338,7 +338,7 @@ Order Now</button>
 <span class="price">₹4,799</span>
 <button onclick="openProductPage(
 'Radha krishna multicolour',
-4,799,
+4799,
 'img_10.jpg'
 )">
 Order Now</button>
@@ -356,7 +356,7 @@ Order Now</button>
 <span class="price">₹5,299</span>
 <button onclick="openProductPage(
 'Radha krishna red colour',
-5,299,
+5299,
 'img_11.jpg'
 )">
 Order Now</button>
@@ -374,7 +374,7 @@ Order Now</button>
 <span class="price">₹2,199</span>
 <button onclick="openProductPage(
 'Kathakali design',
-2,199,
+2199,
 'img_12.jpg'
 )">
 Order Now</button>
@@ -392,7 +392,7 @@ Order Now</button>
 <span class="price">₹1,199</span>
 <button onclick="openProductPage(
 'Elephant design small',
-1,199,
+1199,
 'img_13.jpg'
 )">
 Order Now</button>
@@ -428,7 +428,7 @@ Order Now</button>
 <span class="price">₹3,599</span>
 <button onclick="openProductPage(
 'Elephant design big',
-3,599,
+3599,
 'img_15.jpg'
 )">
 Order Now</button>
@@ -446,7 +446,7 @@ Order Now</button>
 <span class="price">₹2,399</span>
 <button onclick="openProductPage(
 'Flower design big',
-2,399,
+2399,
 'img_16.jpg'
 )">
 Order Now</button>
@@ -464,7 +464,7 @@ Order Now</button>
 <span class="price">₹2,899</span>
 <button onclick="openProductPage(
 'Radha krishna design big',
-2,899,
+2899,
 'img_17.jpg'
 )">
 Order Now</button>
@@ -500,7 +500,7 @@ Order Now</button>
 <span class="price">₹1,999</span>
 <button onclick="openProductPage(
 'Vinayaka design big',
-1,999,
+1999,
 'img_19.jpg'
 )">
 Order Now</button>
@@ -518,7 +518,7 @@ Order Now</button>
 <span class="price">₹1,799</span>
 <button onclick="openProductPage(
 'Fish design big',
-1,799,
+1799,
 'img_20.jpg'
 )">
 Order Now</button>
@@ -990,7 +990,10 @@ margin-bottom:20px;
 
 <!-- BUY NOW -->
 
-<button onclick="showAddressForm()"
+<button onclick="openForm(
+document.getElementById('fullTitle').innerText,
+document.getElementById('fullPrice').innerText.replace('₹','')
+)"
 style="
 width:100%;
 padding:16px;
