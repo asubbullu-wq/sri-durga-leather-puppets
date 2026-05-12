@@ -149,6 +149,52 @@ font-family:'Poppins',sans-serif;
 
 <script>
 
+let selectedProduct = "";
+let selectedPrice = 0;
+let selectedImage = "";
+
+/* OPEN PRODUCT PAGE */
+function openProductPage(title, price, img){
+
+  selectedProduct = title;
+  selectedPrice = price;
+  selectedImage = img;
+
+  document.getElementById("productPage").style.display = "block";
+  document.getElementById("fullTitle").innerText = title;
+  document.getElementById("fullPrice").innerText = "₹" + price;
+  document.getElementById("fullImage").src = img;
+}
+
+/* CLOSE PRODUCT PAGE */
+function closeProductPage(){
+  document.getElementById("productPage").style.display = "none";
+}
+
+/* OPEN ADDRESS PAGE */
+function openForm(title, price){
+  selectedProduct = title;
+  selectedPrice = price;
+
+  document.getElementById("addressPage").style.display = "block";
+}
+
+/* CLOSE ADDRESS PAGE */
+function closeAddressPage(){
+  document.getElementById("addressPage").style.display = "none";
+}
+
+/* AFTER EMAIL SUCCESS */
+function showPaymentPage(){
+  document.getElementById("successPopup").style.display = "flex";
+
+  setTimeout(()=>{
+    document.getElementById("successPopup").style.display = "none";
+    closeAddressPage();
+    closeProductPage();
+  }, 2500);
+}
+
 </script>
 <body>
 
@@ -527,290 +573,6 @@ Order Now</button>
 </div>
 
 </section>
-<!-- PROFESSIONAL POPUP FORM -->
-
-<div id="popupForm" style="
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.75);
-backdrop-filter:blur(5px);
-z-index:9999;
-">
-
-<div style="
-background:#1e1e1e;
-width:90%;
-max-width:380px;
-margin:60px auto;
-padding:25px;
-border-radius:22px;
-box-shadow:0 0 25px rgba(0,0,0,0.6);
-animation:popup .3s ease;
-">
-
-<h2 style="
-text-align:center;
-color:#f5c16c;
-margin-bottom:18px;
-font-size:24px;
-">
-Order Details
-</h2>
-
-<p id="productName" style="
-text-align:center;
-color:#ddd;
-margin-bottom:18px;
-font-size:14px;
-"></p>
-
-<input id="name" type="text"
-placeholder="Your Name"
-style="
-width:100%;
-padding:14px;
-margin-bottom:12px;
-border:none;
-border-radius:12px;
-background:#2a2a2a;
-color:white;
-font-size:14px;
-outline:none;
-">
-
-<input id="phone" type="tel"
-placeholder="Phone Number"
-style="
-width:100%;
-padding:14px;
-margin-bottom:12px;
-border:none;
-border-radius:12px;
-background:#2a2a2a;
-color:white;
-font-size:14px;
-outline:none;
-">
-
-<input id="email" type="email"
-placeholder="Email Address"
-style="
-width:100%;
-padding:14px;
-margin-bottom:12px;
-border:none;
-border-radius:12px;
-background:#2a2a2a;
-color:white;
-font-size:14px;
-outline:none;
-">
-
-<p style="
-color:#aaa;
-font-size:12px;
-margin-bottom:12px;
-padding-left:4px;
-">
-📧 Order updates will be sent to your email
-</p>
-
-<textarea id="address"
-placeholder="Delivery Address"
-style="
-width:100%;
-padding:14px;
-margin-bottom:16px;
-border:none;
-border-radius:12px;
-background:#2a2a2a;
-color:white;
-font-size:14px;
-outline:none;
-height:90px;
-resize:none;
-"></textarea>
-
-<!-- UPI BUTTON -->
-
-<a href="upi://pay?pa=9502500034-4@ybl&pn=Sri Durga Leather Puppets&cu=INR"
-style="
-display:block;
-width:100%;
-padding:14px;
-background:linear-gradient(45deg,#00b09b,#00d084);
-color:white;
-text-align:center;
-border-radius:14px;
-text-decoration:none;
-font-weight:600;
-margin-bottom:12px;
-font-size:15px;
-">
-💳 Pay with UPI
-</a>
-
-<!-- WHATSAPP BUTTON -->
-
-<button onclick="sendWhatsApp()"
-style="
-width:100%;
-padding:14px;
-background:linear-gradient(45deg,#25D366,#128C7E);
-color:white;
-border:none;
-border-radius:14px;
-font-size:15px;
-font-weight:600;
-margin-bottom:12px;
-cursor:pointer;
-">
-📲 WhatsApp Order
-</button>
-
-<!-- CLOSE -->
-
-<button onclick="closeForm()"
-style="
-width:100%;
-padding:13px;
-background:#333;
-color:white;
-border:none;
-border-radius:14px;
-font-size:14px;
-cursor:pointer;
-">
-Close
-</button>
-
-</div>
-</div>
-
-<script>
-let selectedProduct = "";
-let selectedPrice = "";
-
-
-/* OPEN FORM */
-
-function openForm(product, price){
-
-selectedProduct = product;
-selectedPrice = price;
-
-document.getElementById("productName").innerText =
-product + " - ₹" + price;
-
-document.getElementById("popupForm").style.display = "block";
-
-}
-
-
-/* CLOSE FORM */
-
-function closeForm(){
-
-document.getElementById("popupForm").style.display = "none";
-
-}
-
-
-
-
-/* WHATSAPP ORDER */
-
-function sendWhatsApp(){
-
-let name =
-document.getElementById("name").value;
-
-let phone =
-document.getElementById("phone").value;
-
-let email =
-document.getElementById("email").value;
-
-let address =
-document.getElementById("address").value;
-
-if(name=="" || phone=="" || email=="" || address==""){
-
-alert("Please fill all details");
-
-return;
-
-}
-
-/* EMAIL SEND */
-
-emailjs.send("service_jqb790x","template_qaurvgc",{
-
-name: name,
-email: email,
-title: selectedProduct,
-phone: phone,
-address: address
-
-})
-
-.then(function(response){
-
-alert("Order Confirmed & Email Sent ✅");
-
-
-
-
-/* WHATSAPP MESSAGE */
-
-let message =
-`New Order:
-Product: ${selectedProduct}
-Price: ₹${selectedPrice}
-Name: ${name}
-Phone: ${phone}
-Email: ${email}
-Address: ${address}`;
-
-let url =
-"https://wa.me/919502500034?text="
-+ encodeURIComponent(message);
-
-window.open(url, "_blank");
-
-})
-
-.catch(function(error){
-
-alert(JSON.stringify(error));
-
-});
-}
-
-function openProductPage(title,price,image){
-
-document.getElementById("productPage").style.display="block";
-
-document.getElementById("fullTitle").innerText=title;
-
-document.getElementById("fullPrice").innerText="₹"+price;
-
-document.getElementById("fullImage").src=image;
-
-}
-
-
-function closeProductPage(){
-
-document.getElementById("productPage").style.display="none";
-
-}
-
-</script>
 
 <footer style="
 background:#1b1b1b;
@@ -1007,7 +769,6 @@ margin-bottom:15px;
 cursor:pointer;
 ">
 Buy Now
-</button>
 
 <!-- CLOSE -->
 
@@ -1027,10 +788,363 @@ Close
 
 </div>
 </div>
-</body>
+<!-- ADDRESS PAGE -->
+
+<div id="addressPage" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#111;
+z-index:999999;
+overflow-y:auto;
+padding:20px;
+">
+
+<h1 style="
+color:#f5c16c;
+text-align:center;
+margin-bottom:25px;
+font-size:30px;
+">
+Delivery Address
+</h1>
+
+<input id="customerName"
+type="text"
+placeholder="Full Name"
+style="
+width:100%;
+padding:16px;
+margin-bottom:15px;
+border:none;
+border-radius:14px;
+background:#1e1e1e;
+color:white;
+font-size:15px;
+outline:none;
+">
+
+<input id="customerPhone"
+type="tel"
+placeholder="Phone Number"
+style="
+width:100%;
+padding:16px;
+margin-bottom:15px;
+border:none;
+border-radius:14px;
+background:#1e1e1e;
+color:white;
+font-size:15px;
+outline:none;
+">
+
+<input id="customerEmail"
+type="email"
+placeholder="Email Address"
+style="
+width:100%;
+padding:16px;
+margin-bottom:15px;
+border:none;
+border-radius:14px;
+background:#1e1e1e;
+color:white;
+font-size:15px;
+outline:none;
+">
+
+<input id="doorNo"
+type="text"
+placeholder="Door No / House No"
+style="
+width:100%;
+padding:16px;
+margin-bottom:15px;
+border:none;
+border-radius:14px;
+background:#1e1e1e;
+color:white;
+font-size:15px;
+outline:none;
+">
+
+<input id="street"
+type="text"
+placeholder="Street / Area"
+style="
+width:100%;
+padding:16px;
+margin-bottom:15px;
+border:none;
+border-radius:14px;
+background:#1e1e1e;
+color:white;
+font-size:15px;
+outline:none;
+">
+
+<input id="landmark"
+type="text"
+placeholder="Nearby Landmark"
+style="
+width:100%;
+padding:16px;
+margin-bottom:15px;
+border:none;
+border-radius:14px;
+background:#1e1e1e;
+color:white;
+font-size:15px;
+outline:none;
+">
+
+<input id="city"
+type="text"
+placeholder="City / Village"
+style="
+width:100%;
+padding:16px;
+margin-bottom:15px;
+border:none;
+border-radius:14px;
+background:#1e1e1e;
+color:white;
+font-size:15px;
+outline:none;
+">
+
+<input id="pincode"
+type="text"
+placeholder="Pincode"
+style="
+width:100%;
+padding:16px;
+margin-bottom:20px;
+border:none;
+border-radius:14px;
+background:#1e1e1e;
+color:white;
+font-size:15px;
+outline:none;
+">
+
+<button onclick="openPaymentPage()"
+style="
+width:100%;
+padding:17px;
+background:linear-gradient(45deg,#f5c16c,#c58b2a);
+border:none;
+border-radius:14px;
+font-size:18px;
+font-weight:bold;
+color:white;
+cursor:pointer;
+margin-bottom:15px;
+">
+Continue to Payment
+</button>
+
+<button onclick="closeAddressPage()"
+style="
+width:100%;
+padding:15px;
+background:#333;
+border:none;
+border-radius:14px;
+font-size:16px;
+color:white;
+cursor:pointer;
+">
+Close
+</button>
+
+</div>
+<!-- PAYMENT PAGE -->
+<div id="paymentPage" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#111;
+z-index:9999999;
+padding:20px;
+color:white;
+">
+
+<h1 style="color:#f5c16c;text-align:center;margin-bottom:20px;">
+Payment Page
+</h1>
+
+<div style="
+background:#1e1e1e;
+padding:20px;
+border-radius:15px;
+text-align:center;
+">
+
+<h2>Pay Using UPI</h2>
+
+<p style="margin:15px 0;color:#bbb;">
+Scan QR and pay manually
+</p>
+
+<!-- SAMPLE QR (you can replace image) -->
+<img src="QR CODE.png"
+style="width:200px;border-radius:10px;">
+
+<p style="margin-top:15px;">
+UPI ID: <b>9502500034-4@ybl</b>
+</p>
+
+</div>
+
+<br>
+
+<button onclick="confirmPayment()" style="
+width:100%;
+padding:12px;
+font-size:16px;
+background:#25D366;
+color:white;
+border:none;
+border-radius:10px;
+font-weight:bold;
+">
+I Have Paid
+</button>
+
+<br><br>
+
+<button onclick="closePaymentPage()" style="
+width:100%;
+padding:12px;
+background:#333;
+border:none;
+border-radius:10px;
+color:white;
+font-weight:bold;
+">
+Close
+</button>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <script>
-(function(){
-emailjs.init("DmgskuSNFmsfCGKbG");
-})();
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* INIT EMAILJS */
+  emailjs.init("DmgskuSNFmsfCGKbG");
+
+  let selectedProduct = "";
+  let selectedPrice = 0;
+  let selectedImage = "";
+
+  /* OPEN PRODUCT PAGE */
+  window.openProductPage = function (title, price, img) {
+    selectedProduct = title;
+    selectedPrice = price;
+    selectedImage = img;
+
+    document.getElementById("productPage").style.display = "block";
+    document.getElementById("fullTitle").innerText = title;
+    document.getElementById("fullPrice").innerText = "₹" + price;
+    document.getElementById("fullImage").src = img;
+  };
+
+  /* CLOSE PRODUCT PAGE */
+  window.closeProductPage = function () {
+    document.getElementById("productPage").style.display = "none";
+  };
+
+  /* OPEN ADDRESS PAGE */
+  window.openForm = function (title, price) {
+    selectedProduct = title;
+    selectedPrice = price;
+
+    document.getElementById("addressPage").style.display = "block";
+  };
+
+  /* CLOSE ADDRESS PAGE */
+  window.closeAddressPage = function () {
+    document.getElementById("addressPage").style.display = "none";
+  };
+
+  /* PAYMENT PAGE (SIMPLE POPUP FOR NOW) */
+  window.openPaymentPage = function () {
+
+    // optional validation
+    let name = document.getElementById("customerName").value;
+    let phone = document.getElementById("customerPhone").value;
+
+    if (!name || !phone) {
+      alert("Please fill name & phone");
+      return;
+    }
+    /* OPEN PAYMENT PAGE */
+window.openPaymentPage = function () {
+
+  document.getElementById("addressPage").style.display = "none";
+  document.getElementById("paymentPage").style.display = "block";
+
+};
+
+/* CLOSE PAYMENT PAGE */
+window.closePaymentPage = function () {
+  document.getElementById("paymentPage").style.display = "none";
+};
+
+/* PAYMENT SUCCESS */
+window.confirmPayment = function () {
+
+  document.getElementById("successPopup").style.display = "flex";
+
+  setTimeout(() => {
+    document.getElementById("successPopup").style.display = "none";
+    closePaymentPage();
+    closeProductPage();
+  }, 2500);
+
+};
+    // success popup
+    document.getElementById("successPopup").style.display = "flex";
+
+    setTimeout(() => {
+      document.getElementById("successPopup").style.display = "none";
+      closeAddressPage();
+      closeProductPage();
+    }, 2500);
+  };
+
+});
+
+window.confirmPayment = function () {
+
+  let phone = "919502500034";
+
+  let productElement = document.getElementById("fullTitle");
+
+  if (!productElement) {
+    alert("Product not selected");
+    return;
+  }
+
+  let product = productElement.innerText;
+
+  let message =
+    "Hi, I have completed payment for " + product +
+    ". I will attach screenshot here.";
+
+  let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+  window.open(url, "_blank");
+
+};
 </script>
-</html>                                       
+
