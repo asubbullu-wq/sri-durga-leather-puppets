@@ -630,6 +630,76 @@ font-size:12px;
 </p>
 
 </footer>
+<!-- PAYMENT PAGE -->
+<div id="paymentPage" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#111;
+z-index:9999999;
+padding:20px;
+color:white;
+">
+
+<h1 style="color:#f5c16c;text-align:center;margin-bottom:20px;">
+Payment Page
+</h1>
+
+<div style="
+background:#1e1e1e;
+padding:20px;
+border-radius:15px;
+text-align:center;
+">
+
+<h2>Pay Using UPI</h2>
+
+<p style="margin:15px 0;color:#bbb;">
+Scan QR and pay manually
+</p>
+
+<img src="QR CODE.png" style="width:200px;border-radius:10px;">
+
+<p style="margin-top:15px;">
+UPI ID: <b>9502500034-4@ybl</b>
+</p>
+
+</div>
+
+<br>
+
+<button onclick="confirmPayment()" style="
+width:100%;
+padding:12px;
+font-size:16px;
+background:#25D366;
+color:white;
+border:none;
+border-radius:10px;
+font-weight:bold;
+">
+I Have Paid
+</button>
+
+<br><br>
+
+<button onclick="closePaymentPage()" style="
+width:100%;
+padding:12px;
+background:#333;
+border:none;
+border-radius:10px;
+color:white;
+font-weight:bold;
+">
+Close
+</button>
+
+</div>
+</body>
 <div id="successPopup" style="
 display:none;
 position:fixed;
@@ -769,6 +839,7 @@ margin-bottom:15px;
 cursor:pointer;
 ">
 Buy Now
+</button>
 
 <!-- CLOSE -->
 
@@ -932,7 +1003,7 @@ font-size:15px;
 outline:none;
 ">
 
-<button onclick="openPaymentPage()"
+<button type="button" onclick="openPaymentPage()"
 style="
 width:100%;
 padding:17px;
@@ -945,7 +1016,7 @@ color:white;
 cursor:pointer;
 margin-bottom:15px;
 ">
-Continue to Payment
+Proceed to pay
 </button>
 
 <button onclick="closeAddressPage()"
@@ -1037,72 +1108,37 @@ Close
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  /* INIT EMAILJS */
-  emailjs.init("DmgskuSNFmsfCGKbG");
-
-  let selectedProduct = "";
-  let selectedPrice = 0;
-  let selectedImage = "";
-
-  /* OPEN PRODUCT PAGE */
-  window.openProductPage = function (title, price, img) {
-    selectedProduct = title;
-    selectedPrice = price;
-    selectedImage = img;
-
-    document.getElementById("productPage").style.display = "block";
-    document.getElementById("fullTitle").innerText = title;
-    document.getElementById("fullPrice").innerText = "₹" + price;
-    document.getElementById("fullImage").src = img;
-  };
-
-  /* CLOSE PRODUCT PAGE */
-  window.closeProductPage = function () {
-    document.getElementById("productPage").style.display = "none";
-  };
-
-  /* OPEN ADDRESS PAGE */
-  window.openForm = function (title, price) {
-    selectedProduct = title;
-    selectedPrice = price;
-
-    document.getElementById("addressPage").style.display = "block";
-  };
-
-  /* CLOSE ADDRESS PAGE */
-  window.closeAddressPage = function () {
-    document.getElementById("addressPage").style.display = "none";
-  };
-
-  /* PAYMENT PAGE (SIMPLE POPUP FOR NOW) */
-  window.openPaymentPage = function () {
-
-    // optional validation
-    let name = document.getElementById("customerName").value;
-    let phone = document.getElementById("customerPhone").value;
-
-    if (!name || !phone) {
-      alert("Please fill name & phone");
-      return;
-    }
-    /* OPEN PAYMENT PAGE */
-window.openPaymentPage = function () {
-
-  document.getElementById("addressPage").style.display = "none";
-  document.getElementById("paymentPage").style.display = "block";
-
-};
-
-/* CLOSE PAYMENT PAGE */
-window.closePaymentPage = function () {
-  document.getElementById("paymentPage").style.display = "none";
-};
-
-/* PAYMENT SUCCESS */
 window.confirmPayment = function () {
 
+  let phone = "919502500034";
+
+  let product = document.getElementById("fullTitle").innerText;
+
+  let customerEmail = document.getElementById("customerEmail").value;
+  let customerName = document.getElementById("customerName").value;
+
+  // 1. WhatsApp message (for you)
+  let message =
+    "New Order Paid ✅\nProduct: " + product +
+    "\nCustomer: " + customerName;
+
+  let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
+
+  emailjs.send("service_jqb790x", "template_qaurvgc", {
+  customer_name: document.getElementById("customerName").value,
+  phone: document.getElementById("customerPhone").value,
+  product_name: document.getElementById("fullTitle").innerText,
+  price: document.getElementById("fullPrice").innerText.replace("₹",""),
+
+  doorno: document.getElementById("doorNo").value,
+  street: document.getElementById("street").value,
+  landmark: document.getElementById("landmark").value,
+  city: document.getElementById("city").value,
+  pincode: document.getElementById("pincode").value
+});
+
+  // success popup
   document.getElementById("successPopup").style.display = "flex";
 
   setTimeout(() => {
@@ -1110,41 +1146,8 @@ window.confirmPayment = function () {
     closePaymentPage();
     closeProductPage();
   }, 2500);
-
-};
-    // success popup
-    document.getElementById("successPopup").style.display = "flex";
-
-    setTimeout(() => {
-      document.getElementById("successPopup").style.display = "none";
-      closeAddressPage();
-      closeProductPage();
-    }, 2500);
-  };
-
-});
-
-window.confirmPayment = function () {
-
-  let phone = "919502500034";
-
-  let productElement = document.getElementById("fullTitle");
-
-  if (!productElement) {
-    alert("Product not selected");
-    return;
-  }
-
-  let product = productElement.innerText;
-
-  let message =
-    "Hi, I have completed payment for " + product +
-    ". I will attach screenshot here.";
-
-  let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
-
-  window.open(url, "_blank");
-
 };
 </script>
+</body>
+</html>
 
