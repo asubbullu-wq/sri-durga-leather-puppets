@@ -630,76 +630,11 @@ font-size:12px;
 </p>
 
 </footer>
-<!-- PAYMENT PAGE -->
-<div id="paymentPage" style="
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:#111;
-z-index:9999999;
-padding:20px;
-color:white;
-">
 
-<h1 style="color:#f5c16c;text-align:center;margin-bottom:20px;">
-Payment Page
-</h1>
 
-<div style="
-background:#1e1e1e;
-padding:20px;
-border-radius:15px;
-text-align:center;
-">
-
-<h2>Pay Using UPI</h2>
-
-<p style="margin:15px 0;color:#bbb;">
-Scan QR and pay manually
-</p>
-
-<img src="QR CODE.png" style="width:200px;border-radius:10px;">
-
-<p style="margin-top:15px;">
-UPI ID: <b>9502500034-4@ybl</b>
-</p>
-
-</div>
-
-<br>
-
-<button onclick="confirmPayment()" style="
-width:100%;
-padding:12px;
-font-size:16px;
-background:#25D366;
-color:white;
-border:none;
-border-radius:10px;
-font-weight:bold;
-">
-I Have Paid
-</button>
-
-<br><br>
-
-<button onclick="closePaymentPage()" style="
-width:100%;
-padding:12px;
-background:#333;
-border:none;
-border-radius:10px;
-color:white;
-font-weight:bold;
-">
-Close
-</button>
-
-</div>
 </body>
+
+
 <div id="successPopup" style="
 display:none;
 position:fixed;
@@ -927,6 +862,15 @@ color:white;
 font-size:15px;
 outline:none;
 ">
+<p style="
+color:#aaa;
+font-size:13px;
+margin-top:-8px;
+margin-bottom:15px;
+padding-left:5px;
+">
+📩 Order updates and delivery details will be sent to your email
+</p>
 
 <input id="doorNo"
 type="text"
@@ -1003,6 +947,16 @@ font-size:15px;
 outline:none;
 ">
 
+<p style="
+color:#bbb;
+text-align:center;
+margin-bottom:20px;
+font-size:14px;
+">
+Your details are safe and used only for delivery purposes.
+</p>
+
+<!-- PAYMENT PAGE -->
 <button type="button" onclick="openPaymentPage()"
 style="
 width:100%;
@@ -1018,7 +972,7 @@ margin-bottom:15px;
 ">
 Proceed to pay
 </button>
-
+<!-- PAYMENT PAGE -->
 <button onclick="closeAddressPage()"
 style="
 width:100%;
@@ -1033,7 +987,7 @@ cursor:pointer;
 Close
 </button>
 
-</div>
+
 <!-- PAYMENT PAGE -->
 <div id="paymentPage" style="
 display:none;
@@ -1052,64 +1006,65 @@ color:white;
 Payment Page
 </h1>
 
-<div style="
-background:#1e1e1e;
-padding:20px;
-border-radius:15px;
-text-align:center;
-">
-
+<div style="background:#1e1e1e;padding:20px;border-radius:15px;text-align:center;">
 <h2>Pay Using UPI</h2>
-
-<p style="margin:15px 0;color:#bbb;">
-Scan QR and pay manually
-</p>
-
-<!-- SAMPLE QR (you can replace image) -->
-<img src="QR CODE.png"
-style="width:200px;border-radius:10px;">
-
-<p style="margin-top:15px;">
-UPI ID: <b>9502500034-4@ybl</b>
-</p>
-
+<img src="QR CODE.png" style="width:200px;border-radius:10px;">
+<p>UPI ID: <b>9502500034-4@ybl</b></p>
 </div>
-
-<br>
+<p style="
+color:#00d084;
+font-size:14px;
+margin-top:10px;
+font-weight:500;
+line-height:1.6;
+">
+🔒 Secure Payment • Handmade Product<br>
+📸 Send your payment screenshot after payment verification
+</p>
 
 <button onclick="confirmPayment()" style="
 width:100%;
-padding:12px;
-font-size:16px;
+padding:14px;
+font-size:17px;
 background:#25D366;
 color:white;
 border:none;
-border-radius:10px;
+border-radius:12px;
 font-weight:bold;
+margin-top:20px;
+cursor:pointer;
 ">
 I Have Paid
 </button>
 
-<br><br>
-
 <button onclick="closePaymentPage()" style="
 width:100%;
-padding:12px;
+padding:14px;
+font-size:16px;
 background:#333;
-border:none;
-border-radius:10px;
 color:white;
+border:none;
+border-radius:12px;
 font-weight:bold;
+margin-top:12px;
+cursor:pointer;
 ">
 Close
 </button>
+
+</div>
+
+</body>
+</html>
+
+</div>
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
 window.confirmPayment = function () {
-
+  emailjs.init("DmgskuSNFmsfCGKbG");
   let phone = "919502500034";
 
   let product = document.getElementById("fullTitle").innerText;
@@ -1119,25 +1074,45 @@ window.confirmPayment = function () {
 
   // 1. WhatsApp message (for you)
   let message =
-    "New Order Paid ✅\nProduct: " + product +
-    "\nCustomer: " + customerName;
+"🛍️ ORDER PAYMENT COMPLETED" +
 
+"\n\nProduct: " + product +
+
+"\nPrice: ₹" + document.getElementById("fullPrice").innerText.replace("₹","") +
+
+"\nCustomer: " + customerName +
+
+"\nPhone: " + document.getElementById("customerPhone").value +
+
+"\n\n📸 Kindly attach your payment screenshot for verification." +
+
+"\n\nThank you ❤️";
   let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
   window.open(url, "_blank");
 
-  emailjs.send("service_jqb790x", "template_qaurvgc", {
+ emailjs.send("service_jqb790x", "template_qaurvgc", {
+
   customer_name: document.getElementById("customerName").value,
+
+  customer_email: document.getElementById("customerEmail").value,
+
   phone: document.getElementById("customerPhone").value,
+
   product_name: document.getElementById("fullTitle").innerText,
+
   price: document.getElementById("fullPrice").innerText.replace("₹",""),
 
   doorno: document.getElementById("doorNo").value,
-  street: document.getElementById("street").value,
-  landmark: document.getElementById("landmark").value,
-  city: document.getElementById("city").value,
-  pincode: document.getElementById("pincode").value
-});
 
+  street: document.getElementById("street").value,
+
+  landmark: document.getElementById("landmark").value,
+
+  city: document.getElementById("city").value,
+
+  pincode: document.getElementById("pincode").value
+
+});
   // success popup
   document.getElementById("successPopup").style.display = "flex";
 
@@ -1147,6 +1122,40 @@ window.confirmPayment = function () {
     closeProductPage();
   }, 2500);
 };
+
+function openPaymentPage(){
+
+  let name = document.getElementById("customerName").value.trim();
+  let phone = document.getElementById("customerPhone").value.trim();
+  let email = document.getElementById("customerEmail").value.trim();
+  let door = document.getElementById("doorNo").value.trim();
+  let street = document.getElementById("street").value.trim();
+  let landmark = document.getElementById("landmark").value.trim();
+  let city = document.getElementById("city").value.trim();
+  let pincode = document.getElementById("pincode").value.trim();
+
+  if(
+    name === "" ||
+    phone === "" ||
+    email === "" ||
+    door === "" ||
+    street === "" ||
+    landmark === "" ||
+    city === "" ||
+    pincode === ""
+  ){
+    alert("Please fill all delivery details");
+    return;
+  }
+
+  document.getElementById("paymentPage").style.display = "block";
+}
+
+
+function closePaymentPage(){
+  document.getElementById("paymentPage").style.display = "none";
+}
+
 </script>
 </body>
 </html>
