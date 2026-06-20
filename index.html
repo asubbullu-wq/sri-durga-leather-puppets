@@ -1325,19 +1325,29 @@ window.confirmPayment = function () {
 
   // 1. WhatsApp message (for you)
   let message =
-"🛍️ ORDER PAYMENT COMPLETED" +
+"🛍️ *NEW ORDER RECEIVED*" +
 
-"\n\nProduct: " + product +
+"\n\n📦 Product: " + product +
 
-"\nPrice: ₹" + document.getElementById("fullPrice").innerText.replace("₹","") +
+"\n💰 Price: ₹" + document.getElementById("fullPrice").innerText.replace("₹","") +
 
-"\nCustomer: " + customerName +
+"\n👤 Customer Name: " + document.getElementById("customerName").value +
 
-"\nPhone: " + document.getElementById("customerPhone").value +
+"\n📞 Phone: " + document.getElementById("customerPhone").value +
 
-"\n\n📸 Kindly attach your payment screenshot for verification." +
+"\n📧 Email: " + document.getElementById("customerEmail").value +
 
-"\n\nThank you ❤️";
+"\n🏠 Door No: " + document.getElementById("doorNo").value +
+
+"\n🛣️ Street/Area: " + document.getElementById("street").value +
+
+"\n📍 Landmark: " + document.getElementById("landmark").value +
+
+"\n🏙️ City/Village: " + document.getElementById("city").value +
+
+"\n📮 Pincode: " + document.getElementById("pincode").value +
+
+"\n\n📸 Payment screenshot sent by customer for verification.";
   let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
   window.open(url, "_blank");
 
